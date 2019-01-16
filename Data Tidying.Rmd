@@ -46,12 +46,30 @@ catch_long <- catch_df %>%
 head(catch_long)
 ```
 
-
-
-  
-  
 %>% 
 
+```{r}
+catch_cleaned <- catch_long %>%
+  rename(catch_thousands = catch)
+
+head(catch_cleaned)
+```
+
+```{r}
+catch_cleaned <- catch_long %>%
+  rename(catch_thousands = catch)
+  #mutate(catch = catch_thousands * 1000)
+head(catch_cleaned)
+```
+
+
+```{r}
+test_catch <- as.integer(catch_cleaned$catch_thousands)
+
+i <- which(is.na(test_catch) == T)
+
+catch_cleaned[i, ]
+```
 # Split- Apply-Combine
 
 # Joins
