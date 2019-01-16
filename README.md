@@ -6,3 +6,5 @@ This repository is used as:
 * USing git with Rstudio
 
 ## Credits
+
+Benjamin changed this line.
