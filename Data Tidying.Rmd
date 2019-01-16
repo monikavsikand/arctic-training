@@ -3,8 +3,8 @@ title: "Data Tidying"
 author: "Monika Sikand"
 date: "1/16/2019"
 output:
-  pdf_document: default
   html_document: default
+  pdf_document: default
   word_document: default
 ---
 
@@ -144,8 +144,8 @@ head(region_clean)
 
 ```{r}
 
-catch_joined <- left_join(catch_cleaned, region_clean, 
-                          by = c("Region" = "code",))
+catch_joined <- left_join (catch_cleaned, region_clean, 
+                          by = c("Region" = "code"))
   
 head(catch_joined)
 ```
