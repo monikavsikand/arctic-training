@@ -2,7 +2,10 @@
 title: "Data Tidying"
 author: "Monika Sikand"
 date: "1/16/2019"
-output: html_document
+output:
+  pdf_document: default
+  html_document: default
+  word_document: default
 ---
 
 ```{r setup, include=FALSE}
@@ -24,6 +27,31 @@ catch_df <- read.csv(url( "https://knb.ecoinformatics.org/knb/d1/mn/v2/object/df
 head(catch_df)
 ```
 
+control +SHift + m gives %>% pipe operator
+or
+
+command + shift + m gives %>% pipe operator
+
+catch_cleaned <- catch_df %>% 
+  select(-All, -notesRegCode)
+  
+  * Remove marginal some and notes column
+  * Move from wide to long format
+
+```{r}
+catch_long <- catch_df %>% 
+  select(-All, -notesRegCode)%>%  # negative values remove columns
+  gather(key = "species", value = "catch",-Year, -Region)
+
+head(catch_long)
+```
+
+
+
+  
+  
+%>% 
+
 # Split- Apply-Combine
 
 # Joins
@@ -31,26 +59,3 @@ head(catch_df)
 
 
 
-
-
-
-
-## R Markdown
-
-This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
-
-When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
-
-```{r cars}
-summary(cars)
-```
-
-## Including Plots
-
-You can also embed plots, for example:
-
-```{r pressure, echo=FALSE}
-plot(pressure)
-```
-
-Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
