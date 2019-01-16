@@ -2,7 +2,8 @@
 Sample code from the Arctic Data Center training
 This repository is used as:
 
-Monika changed this line again
+Monika and Benjamin changed again.
+
 * An introduction to git and 
 * USing git with Rstudio
 
