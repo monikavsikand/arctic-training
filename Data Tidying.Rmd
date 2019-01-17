@@ -150,4 +150,44 @@ catch_joined <- left_join (catch_cleaned, region_clean,
 head(catch_joined)
 ```
 
+## Spread
+
+make a wide dataframe using spread
+
+
+```{r}
+catch_wide <- catch_cleaned %>%
+  filter(Year > 1990) %>%
+  select(-catch_thousands) %>%
+  spread(key = Year, value = catch)
+
+head(catch_wide)
+  
+```
+
+
+
+# Separate and unite
+YYYY-MM_DD
+
+```{r}
+
+dates_df <- data.frame(date = c("5/24/1930",
+                                "5/25/1930",
+                                "5/26/1930",
+                                "5/27/1930",
+                                "5/28/1930"),
+                       stringsAsFactors = FALSE)
+
+dates_df 
+
+```
+
+```{r}
+dates_sep <- dates_df %>%
+  separate(col = date, into = c("month", "day", "year"), by = "/", remove = F)
+
+head(dates_sep)
+```
+
 
