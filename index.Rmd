@@ -6,7 +6,7 @@ output: html_document
 ---
 
 ```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
+knitr::opts_chunk$set(echo = FALSE)
 ```
 
 ```{r, warning = F, message = F, echo = F}
@@ -14,6 +14,7 @@ library(dplyr)
 library(tidyr)
 library(ggplot2)
 library(DT)
+library(leaflet)
 ```
 
 
@@ -81,7 +82,7 @@ plot_name <- ggplot(annual_esc,aes(x = year, y = escapement, color = Species))+
   theme_bw()
 plot_name
 
-ggsave("region_escapement.png", 
+ggsave("figures/region_escapement.png", 
        plot = plot_name, 
        height = 10, 
        width = 8, 
@@ -90,4 +91,31 @@ ggsave("region_escapement.png",
 ```
 
 
-# Interactive 
+```{r}
+write.csv(annual_esc,
+          "derived_data/annual_escapement.csv", 
+          row.names = F)
+```
+
+Make a map using leaflet
+
+*find a unique location with lat/lon values
+
+```{r}
+locations <- esc %>%
+  distinct(Location, Latitude, Longitude) %>%
+  drop_na()
+
+datatable(locations)
+```
+
+
+
+# Interactive Map
+
+```{r}
+leaflet(locations) %>%
+  addTiles() %>%
+  addMarkers(~Longitude, ~ Latitude, popup = ~ Location)
+```
+
