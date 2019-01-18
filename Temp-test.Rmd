@@ -1,0 +1,22 @@
+---
+title: "Temp-test"
+author: "Monika Sikand"
+date: "1/17/2019"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+Source our utility functions and test them.
+
+```{r}
+source("fahr_to_celsius.R")
+```
+
+```{r}
+airtemps <- c(10,15)
+fahr_to_celsius(airtemps)
+```
+
